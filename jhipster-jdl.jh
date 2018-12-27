@@ -2,7 +2,7 @@
 
 entity User {
 	username String required,
-    
+    karma Long required,
 }
 
 entity Topic {
@@ -34,6 +34,10 @@ relationship OneToMany {
 relationship OneToOne {
 	Conversation to Topic,
     Conversation{respondingUser} to User,
-    Rating to User ,
+    Message to User,
+    Rating to User,
     Rating to Topic 
 }
+
+dto * with mapstruct
+service all with serviceImpl
