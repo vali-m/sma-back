@@ -1,0 +1,53 @@
+{
+    "name": "Topic",
+    "fields": [
+        {
+            "fieldName": "coordX",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "coordY",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "archived",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "score",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "conversation",
+            "otherEntityName": "conversation",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "topic"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "rating",
+            "otherEntityName": "rating",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "topic"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user1",
+            "otherEntityName": "user1",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181227154529",
+    "entityTableName": "topic",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "skipClient": true
+}

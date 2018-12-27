@@ -1,0 +1,51 @@
+{
+    "name": "User1",
+    "fields": [
+        {
+            "fieldName": "username",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "karma",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "topic",
+            "otherEntityName": "topic",
+            "otherEntityRelationshipName": "user1"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "message",
+            "otherEntityName": "message",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "user1"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "rating",
+            "otherEntityName": "rating",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "user1"
+        }
+    ],
+    "changelogDate": "20181227154528",
+    "entityTableName": "user_1",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "skipClient": true
+}
