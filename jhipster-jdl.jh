@@ -1,6 +1,6 @@
 
 
-entity User {
+entity User1 {
 	username String required,
     karma Long required,
 }
@@ -22,22 +22,23 @@ entity Rating {
 
 entity Message {
 	text String required,
-    timestamp Instant required,
+    timestampMillis Long required,
 }
 
 
 relationship OneToMany {
-	User to Topic,
+	User1 to Topic,
     Conversation to Message,
 }
 
 relationship OneToOne {
 	Conversation to Topic,
-    Conversation{respondingUser} to User,
-    Message to User,
-    Rating to User,
+    Conversation{respondingUser} to User1,
+    Message to User1,
+    Rating to User1,
     Rating to Topic 
 }
 
+skipClient *
 dto * with mapstruct
-service all with serviceImpl
+service all with serviceClass
