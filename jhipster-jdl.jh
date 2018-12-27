@@ -1,0 +1,39 @@
+
+
+entity User {
+	username String required,
+    
+}
+
+entity Topic {
+	coordX Long,
+    coordY Long,
+    archived Boolean,
+    score Integer
+}
+
+entity Conversation {
+
+}
+
+entity Rating {
+	score Integer required min(-1) max(1)
+}
+
+entity Message {
+	text String required,
+    timestamp Instant required,
+}
+
+
+relationship OneToMany {
+	User to Topic,
+    Conversation to Message,
+}
+
+relationship OneToOne {
+	Conversation to Topic,
+    Conversation{respondingUser} to User,
+    Rating to User ,
+    Rating to Topic 
+}
