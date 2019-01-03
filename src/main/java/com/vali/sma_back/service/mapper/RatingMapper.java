@@ -1,21 +1,21 @@
 package com.vali.sma_back.service.mapper;
 
-import com.vali.sma_back.domain.*;
+import com.vali.sma_back.domain.Rating;
 import com.vali.sma_back.service.dto.RatingDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity Rating and its DTO RatingDTO.
  */
-@Mapper(componentModel = "spring", uses = {User1Mapper.class, TopicMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, TopicMapper.class})
 public interface RatingMapper extends EntityMapper<RatingDTO, Rating> {
 
-    @Mapping(source = "user1.id", target = "user1Id")
+    @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "topic.id", target = "topicId")
     RatingDTO toDto(Rating rating);
 
-    @Mapping(source = "user1Id", target = "user1")
+    @Mapping(source = "userId", target = "user")
     @Mapping(source = "topicId", target = "topic")
     Rating toEntity(RatingDTO ratingDTO);
 

@@ -1,7 +1,7 @@
 package com.vali.sma_back.service;
-import com.vali.sma_back.config.Constants;
 
 import com.vali.sma_back.SmaBackApp;
+import com.vali.sma_back.config.Constants;
 import com.vali.sma_back.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;

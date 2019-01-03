@@ -3,7 +3,6 @@ package com.vali.sma_back.security;
 import com.vali.sma_back.SmaBackApp;
 import com.vali.sma_back.domain.User;
 import com.vali.sma_back.repository.UserRepository;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;

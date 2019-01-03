@@ -1,7 +1,7 @@
 package com.vali.sma_back.repository;
 
 import com.vali.sma_back.domain.Conversation;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 

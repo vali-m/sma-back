@@ -9,8 +9,9 @@ import com.vali.sma_back.security.AuthoritiesConstants;
 import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.UserDTO;
 import com.vali.sma_back.service.util.RandomUtil;
-import com.vali.sma_back.web.rest.errors.*;
-
+import com.vali.sma_back.web.rest.errors.EmailAlreadyUsedException;
+import com.vali.sma_back.web.rest.errors.InvalidPasswordException;
+import com.vali.sma_back.web.rest.errors.LoginAlreadyUsedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

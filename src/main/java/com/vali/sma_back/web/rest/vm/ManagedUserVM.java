@@ -1,6 +1,7 @@
 package com.vali.sma_back.web.rest.vm;
 
 import com.vali.sma_back.service.dto.UserDTO;
+
 import javax.validation.constraints.Size;
 
 /**

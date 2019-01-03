@@ -1,22 +1,21 @@
 package com.vali.sma_back.domain;
 
-import com.vali.sma_back.config.Constants;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vali.sma_back.config.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.BatchSize;
-import javax.validation.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
-import java.time.Instant;
 
 /**
  * A user.
@@ -93,6 +92,84 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
+    @NotNull
+    @Column(name = "karma", nullable = false)
+    private Long karma;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Topic> topics = new HashSet<>();
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private Message message;
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private Rating rating;
+
+    public Long getKarma() {
+        return karma;
+    }
+
+    public User karma(Long karma) {
+        this.karma = karma;
+        return this;
+    }
+
+    public void setKarma(Long karma) {
+        this.karma = karma;
+    }
+
+    public Set<Topic> getTopics() {
+        return topics;
+    }
+
+    public User topics(Set<Topic> topics) {
+        this.topics = topics;
+        return this;
+    }
+
+    public User addTopic(Topic topic) {
+        this.topics.add(topic);
+        topic.setUser(this);
+        return this;
+    }
+
+    public User removeTopic(Topic topic) {
+        this.topics.remove(topic);
+        topic.setUser(null);
+        return this;
+    }
+
+    public void setTopics(Set<Topic> topics) {
+        this.topics = topics;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public User message(Message message) {
+        this.message = message;
+        return this;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public User rating(Rating rating) {
+        this.rating = rating;
+        return this;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -219,7 +296,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-            "login='" + login + '\'' +
+            ", karma=" + getKarma() +
+            ", login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +

@@ -1,7 +1,6 @@
 package com.vali.sma_back.repository;
 
 import com.vali.sma_back.domain.Authority;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

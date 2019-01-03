@@ -1,7 +1,6 @@
 package com.vali.sma_back.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-
 import com.vali.sma_back.domain.User;
 import com.vali.sma_back.repository.UserRepository;
 import com.vali.sma_back.security.SecurityUtils;
@@ -12,7 +11,6 @@ import com.vali.sma_back.service.dto.UserDTO;
 import com.vali.sma_back.web.rest.errors.*;
 import com.vali.sma_back.web.rest.vm.KeyAndPasswordVM;
 import com.vali.sma_back.web.rest.vm.ManagedUserVM;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Optional;
 
 /**
  * REST controller for managing the current user's account.

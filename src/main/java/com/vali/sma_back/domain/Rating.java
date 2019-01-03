@@ -2,8 +2,9 @@ package com.vali.sma_back.domain;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class Rating implements Serializable {
     private Integer score;
 
     @OneToOne    @JoinColumn(unique = true)
-    private User1 user1;
+    private User user;
 
     @OneToOne    @JoinColumn(unique = true)
     private Topic topic;
@@ -55,17 +56,17 @@ public class Rating implements Serializable {
         this.score = score;
     }
 
-    public User1 getUser1() {
-        return user1;
+    public User getUser() {
+        return user;
     }
 
-    public Rating user1(User1 user1) {
-        this.user1 = user1;
+    public Rating user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setUser1(User1 user1) {
-        this.user1 = user1;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Topic getTopic() {

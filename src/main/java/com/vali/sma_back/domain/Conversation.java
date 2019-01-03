@@ -1,13 +1,10 @@
 package com.vali.sma_back.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Conversation.
@@ -27,7 +24,7 @@ public class Conversation implements Serializable {
     private Topic topic;
 
     @OneToOne    @JoinColumn(unique = true)
-    private User1 respondingUser;
+    private User respondingUser;
 
     @OneToMany(mappedBy = "conversation")
     private Set<Message> messages = new HashSet<>();
@@ -53,16 +50,16 @@ public class Conversation implements Serializable {
         this.topic = topic;
     }
 
-    public User1 getRespondingUser() {
+    public User getRespondingUser() {
         return respondingUser;
     }
 
-    public Conversation respondingUser(User1 user1) {
+    public Conversation respondingUser(User user1) {
         this.respondingUser = user1;
         return this;
     }
 
-    public void setRespondingUser(User1 user1) {
+    public void setRespondingUser(User user1) {
         this.respondingUser = user1;
     }
 

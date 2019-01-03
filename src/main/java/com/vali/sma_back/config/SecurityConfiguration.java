@@ -1,8 +1,8 @@
 package com.vali.sma_back.config;
 
-import com.vali.sma_back.security.*;
-import com.vali.sma_back.security.jwt.*;
-
+import com.vali.sma_back.security.AuthoritiesConstants;
+import com.vali.sma_back.security.jwt.JWTConfigurer;
+import com.vali.sma_back.security.jwt.TokenProvider;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

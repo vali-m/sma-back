@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -44,7 +43,7 @@ public class Topic implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("topics")
-    private User1 user1;
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -133,17 +132,17 @@ public class Topic implements Serializable {
         this.rating = rating;
     }
 
-    public User1 getUser1() {
-        return user1;
+    public User getUser() {
+        return user;
     }
 
-    public Topic user1(User1 user1) {
-        this.user1 = user1;
+    public Topic user1(User user1) {
+        this.user = user1;
         return this;
     }
 
-    public void setUser1(User1 user1) {
-        this.user1 = user1;
+    public void setUser(User user1) {
+        this.user = user1;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

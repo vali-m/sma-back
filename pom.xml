@@ -62,7 +62,7 @@
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
         <jib-maven-plugin.version>0.9.11</jib-maven-plugin.version>
-        <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+        <!--<frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>-->
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
         <scala-maven-plugin.version>3.4.2</scala-maven-plugin.version>
@@ -419,11 +419,11 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>com.github.eirslett</groupId>
-                    <artifactId>frontend-maven-plugin</artifactId>
-                    <version>${frontend-maven-plugin.version}</version>
-                </plugin>
+                <!--<plugin>-->
+                    <!--<groupId>com.github.eirslett</groupId>-->
+                    <!--<artifactId>frontend-maven-plugin</artifactId>-->
+                    <!--<version>${frontend-maven-plugin.version}</version>-->
+                <!--</plugin>-->
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
                     <artifactId>git-commit-id-plugin</artifactId>
@@ -734,39 +734,39 @@
             </dependencies>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>install node and npm</id>
-                                <goals>
-                                    <goal>install-node-and-npm</goal>
-                                </goals>
-                                <configuration>
-                                    <nodeVersion>${node.version}</nodeVersion>
-                                    <npmVersion>${npm.version}</npmVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm install</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>webpack build dev</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <arguments>run webpack:build</arguments>
-                                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
+                    <!--<plugin>-->
+                        <!--<groupId>com.github.eirslett</groupId>-->
+                        <!--<artifactId>frontend-maven-plugin</artifactId>-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<id>install node and npm</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>install-node-and-npm</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<nodeVersion>${node.version}</nodeVersion>-->
+                                    <!--<npmVersion>${npm.version}</npmVersion>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                            <!--<execution>-->
+                                <!--<id>npm install</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                            <!--</execution>-->
+                            <!--<execution>-->
+                                <!--<id>webpack build dev</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                                <!--<phase>generate-resources</phase>-->
+                                <!--<configuration>-->
+                                    <!--<arguments>run webpack:build</arguments>-->
+                                    <!--<npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
@@ -886,53 +886,53 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>install node and npm</id>
-                                <goals>
-                                    <goal>install-node-and-npm</goal>
-                                </goals>
-                                <configuration>
-                                    <nodeVersion>${node.version}</nodeVersion>
-                                    <npmVersion>${npm.version}</npmVersion>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>npm install</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>install</arguments>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>webpack build test</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>test</phase>
-                                <configuration>
-                                    <arguments>run webpack:test</arguments>
-                                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>webpack build prod</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <phase>generate-resources</phase>
-                                <configuration>
-                                    <arguments>run webpack:prod</arguments>
-                                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
+                    <!--<plugin>-->
+                        <!--<groupId>com.github.eirslett</groupId>-->
+                        <!--<artifactId>frontend-maven-plugin</artifactId>-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<id>install node and npm</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>install-node-and-npm</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<nodeVersion>${node.version}</nodeVersion>-->
+                                    <!--<npmVersion>${npm.version}</npmVersion>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                            <!--<execution>-->
+                                <!--<id>npm install</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<arguments>install</arguments>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                            <!--<execution>-->
+                                <!--<id>webpack build test</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                                <!--<phase>test</phase>-->
+                                <!--<configuration>-->
+                                    <!--<arguments>run webpack:test</arguments>-->
+                                    <!--<npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                            <!--<execution>-->
+                                <!--<id>webpack build prod</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                                <!--<phase>generate-resources</phase>-->
+                                <!--<configuration>-->
+                                    <!--<arguments>run webpack:prod</arguments>-->
+                                    <!--<npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
                     <plugin>
                         <groupId>pl.project13.maven</groupId>
                         <artifactId>git-commit-id-plugin</artifactId>
@@ -1073,20 +1073,20 @@
                                                 <ignore/>
                                             </action>
                                         </pluginExecution>
-                                        <pluginExecution>
-                                            <pluginExecutionFilter>
-                                                <groupId>com.github.eirslett</groupId>
-                                        <artifactId>frontend-maven-plugin</artifactId>
-                                                <versionRange>${frontend-maven-plugin.version}</versionRange>
-                                                <goals>
-                                                    <goal>install-node-and-npm</goal>
-                                                    <goal>npm</goal>
-                                                </goals>
-                                            </pluginExecutionFilter>
-                                            <action>
-                                                <ignore/>
-                                            </action>
-                                        </pluginExecution>
+                                        <!--<pluginExecution>-->
+                                            <!--<pluginExecutionFilter>-->
+                                                <!--<groupId>com.github.eirslett</groupId>-->
+                                        <!--<artifactId>frontend-maven-plugin</artifactId>-->
+                                                <!--<versionRange>${frontend-maven-plugin.version}</versionRange>-->
+                                                <!--<goals>-->
+                                                    <!--<goal>install-node-and-npm</goal>-->
+                                                    <!--<goal>npm</goal>-->
+                                                <!--</goals>-->
+                                            <!--</pluginExecutionFilter>-->
+                                            <!--<action>-->
+                                                <!--<ignore/>-->
+                                            <!--</action>-->
+                                        <!--</pluginExecution>-->
                                     </pluginExecutions>
                                 </lifecycleMappingMetadata>
                             </configuration>

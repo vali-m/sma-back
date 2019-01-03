@@ -18,7 +18,7 @@ public class TopicDTO implements Serializable {
 
     private Integer score;
 
-    private Long user1Id;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -60,12 +60,12 @@ public class TopicDTO implements Serializable {
         this.score = score;
     }
 
-    public Long getUser1Id() {
-        return user1Id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser1Id(Long user1Id) {
-        this.user1Id = user1Id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class TopicDTO implements Serializable {
             ", coordY=" + getCoordY() +
             ", archived='" + isArchived() + "'" +
             ", score=" + getScore() +
-            ", user1=" + getUser1Id() +
+            ", user=" + getUserId() +
             "}";
     }
 }

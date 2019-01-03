@@ -1,6 +1,8 @@
 package com.vali.sma_back.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -16,7 +18,7 @@ public class RatingDTO implements Serializable {
     @Max(value = 1)
     private Integer score;
 
-    private Long user1Id;
+    private Long userId;
 
     private Long topicId;
 
@@ -36,12 +38,12 @@ public class RatingDTO implements Serializable {
         this.score = score;
     }
 
-    public Long getUser1Id() {
-        return user1Id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser1Id(Long user1Id) {
-        this.user1Id = user1Id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getTopicId() {
@@ -78,7 +80,7 @@ public class RatingDTO implements Serializable {
         return "RatingDTO{" +
             "id=" + getId() +
             ", score=" + getScore() +
-            ", user1=" + getUser1Id() +
+            ", user=" + getUserId() +
             ", topic=" + getTopicId() +
             "}";
     }

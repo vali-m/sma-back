@@ -2,7 +2,6 @@ package com.vali.sma_back.web.rest;
 
 import com.vali.sma_back.service.AuditEventService;
 import com.vali.sma_back.web.rest.util.PaginationUtil;
-
 import io.github.jhipster.web.util.ResponseUtil;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;

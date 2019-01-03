@@ -3,8 +3,7 @@ package com.vali.sma_back.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -31,7 +30,7 @@ public class Message implements Serializable {
     private Long timestampMillis;
 
     @OneToOne    @JoinColumn(unique = true)
-    private User1 user1;
+    private User user;
 
     @ManyToOne
     @JsonIgnoreProperties("messages")
@@ -72,17 +71,17 @@ public class Message implements Serializable {
         this.timestampMillis = timestampMillis;
     }
 
-    public User1 getUser1() {
-        return user1;
+    public User getUser() {
+        return user;
     }
 
-    public Message user1(User1 user1) {
-        this.user1 = user1;
+    public Message user(User user) {
+        this.user = user;
         return this;
     }
 
-    public void setUser1(User1 user1) {
-        this.user1 = user1;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Conversation getConversation() {

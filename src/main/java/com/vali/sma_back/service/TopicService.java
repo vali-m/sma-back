@@ -6,7 +6,6 @@ import com.vali.sma_back.service.dto.TopicDTO;
 import com.vali.sma_back.service.mapper.TopicMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

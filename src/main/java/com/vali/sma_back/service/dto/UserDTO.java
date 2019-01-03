@@ -1,12 +1,8 @@
 package com.vali.sma_back.service.dto;
 
 import com.vali.sma_back.config.Constants;
-
 import com.vali.sma_back.domain.Authority;
 import com.vali.sma_back.domain.User;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.*;
 import java.time.Instant;
@@ -24,6 +20,17 @@ public class UserDTO {
     @Pattern(regexp = Constants.LOGIN_REGEX)
     @Size(min = 1, max = 50)
     private String login;
+
+    @NotNull
+    private Long karma;
+
+    public Long getKarma() {
+        return karma;
+    }
+
+    public void setKarma(Long karma) {
+        this.karma = karma;
+    }
 
     @Size(max = 50)
     private String firstName;

@@ -1,14 +1,14 @@
 package com.vali.sma_back.service.mapper;
 
-import com.vali.sma_back.domain.*;
+import com.vali.sma_back.domain.Conversation;
 import com.vali.sma_back.service.dto.ConversationDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity Conversation and its DTO ConversationDTO.
  */
-@Mapper(componentModel = "spring", uses = {TopicMapper.class, User1Mapper.class})
+@Mapper(componentModel = "spring", uses = {TopicMapper.class, UserMapper.class})
 public interface ConversationMapper extends EntityMapper<ConversationDTO, Conversation> {
 
     @Mapping(source = "topic.id", target = "topicId")

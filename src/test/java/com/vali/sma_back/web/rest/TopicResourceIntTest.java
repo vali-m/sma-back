@@ -1,14 +1,12 @@
 package com.vali.sma_back.web.rest;
 
 import com.vali.sma_back.SmaBackApp;
-
 import com.vali.sma_back.domain.Topic;
 import com.vali.sma_back.repository.TopicRepository;
 import com.vali.sma_back.service.TopicService;
 import com.vali.sma_back.service.dto.TopicDTO;
 import com.vali.sma_back.service.mapper.TopicMapper;
 import com.vali.sma_back.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +24,6 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
 
 import static com.vali.sma_back.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -3,7 +3,6 @@ package com.vali.sma_back.repository;
 import com.vali.sma_back.config.Constants;
 import com.vali.sma_back.config.audit.AuditEventConverter;
 import com.vali.sma_back.domain.PersistentAuditEvent;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.audit.AuditEvent;
@@ -13,7 +12,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * An implementation of Spring Boot's AuditEventRepository.

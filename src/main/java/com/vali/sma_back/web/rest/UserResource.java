@@ -1,5 +1,6 @@
 package com.vali.sma_back.web.rest;
 
+import com.codahale.metrics.annotation.Timed;
 import com.vali.sma_back.config.Constants;
 import com.vali.sma_back.domain.User;
 import com.vali.sma_back.repository.UserRepository;
@@ -12,9 +13,7 @@ import com.vali.sma_back.web.rest.errors.EmailAlreadyUsedException;
 import com.vali.sma_back.web.rest.errors.LoginAlreadyUsedException;
 import com.vali.sma_back.web.rest.util.HeaderUtil;
 import com.vali.sma_back.web.rest.util.PaginationUtil;
-import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -28,7 +27,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing users.

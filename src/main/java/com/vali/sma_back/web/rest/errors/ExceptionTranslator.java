@@ -1,7 +1,6 @@
 package com.vali.sma_back.web.rest.errors;
 
 import com.vali.sma_back.web.rest.util.HeaderUtil;
-
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

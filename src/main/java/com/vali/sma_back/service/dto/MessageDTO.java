@@ -1,6 +1,6 @@
 package com.vali.sma_back.service.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,7 +17,7 @@ public class MessageDTO implements Serializable {
     @NotNull
     private Long timestampMillis;
 
-    private Long user1Id;
+    private Long userId;
 
     private Long conversationId;
 
@@ -45,12 +45,12 @@ public class MessageDTO implements Serializable {
         this.timestampMillis = timestampMillis;
     }
 
-    public Long getUser1Id() {
-        return user1Id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser1Id(Long user1Id) {
-        this.user1Id = user1Id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getConversationId() {
@@ -88,7 +88,7 @@ public class MessageDTO implements Serializable {
             "id=" + getId() +
             ", text='" + getText() + "'" +
             ", timestampMillis=" + getTimestampMillis() +
-            ", user1=" + getUser1Id() +
+            ", user=" + getUserId() +
             ", conversation=" + getConversationId() +
             "}";
     }

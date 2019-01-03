@@ -8,11 +8,11 @@
     -->
     <changeSet id="20181227154532-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="user1_id"
+        <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="message"
                                  constraintName="fk_message_user1_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user_1"/>
+                                 referencedTableName="jhi_user"/>
 
         <addForeignKeyConstraint baseColumnNames="conversation_id"
                                  baseTableName="message"
