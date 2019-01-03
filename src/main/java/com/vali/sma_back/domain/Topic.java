@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Topic.
@@ -37,9 +38,9 @@ public class Topic implements Serializable {
     @JsonIgnore
     private Conversation conversation;
 
-    @OneToOne(mappedBy = "topic")
+    @OneToMany(mappedBy = "topic")
     @JsonIgnore
-    private Rating rating;
+    private Set<Rating> ratings;
 
     @ManyToOne
     @JsonIgnoreProperties("topics")
@@ -119,17 +120,17 @@ public class Topic implements Serializable {
         this.conversation = conversation;
     }
 
-    public Rating getRating() {
-        return rating;
+    public Set<Rating> getRatings() {
+        return ratings;
     }
 
-    public Topic rating(Rating rating) {
-        this.rating = rating;
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public Topic ratings(Set<Rating> ratings) {
+        this.ratings = ratings;
         return this;
-    }
-
-    public void setRating(Rating rating) {
-        this.rating = rating;
     }
 
     public User getUser() {

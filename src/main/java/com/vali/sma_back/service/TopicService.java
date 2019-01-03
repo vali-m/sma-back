@@ -86,7 +86,7 @@ public class TopicService {
         log.debug("Request to get all topics where Rating is null");
         return StreamSupport
             .stream(topicRepository.findAll().spliterator(), false)
-            .filter(topic -> topic.getRating() == null)
+            .filter(topic -> topic.getRatings() == null)
             .map(topicMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

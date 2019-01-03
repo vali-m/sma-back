@@ -98,13 +98,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     @OneToMany(mappedBy = "user")
     private Set<Topic> topics = new HashSet<>();
-    @OneToOne(mappedBy = "user")
-    @JsonIgnore
-    private Message message;
 
-    @OneToOne(mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private Rating rating;
+    private Set<Message> messages;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private Set<Rating> ratings;
 
     public Long getKarma() {
         return karma;
@@ -144,30 +145,31 @@ public class User extends AbstractAuditingEntity implements Serializable {
         this.topics = topics;
     }
 
-    public Message getMessage() {
-        return message;
+
+    public Set<Message> getMessages() {
+        return messages;
     }
 
-    public User message(Message message) {
-        this.message = message;
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
+    }
+
+    public User messages(Set<Message> messages) {
+        this.messages = messages;
         return this;
     }
 
-    public void setMessage(Message message) {
-        this.message = message;
+    public Set<Rating> getRatings() {
+        return ratings;
     }
 
-    public Rating getRating() {
-        return rating;
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
     }
 
-    public User rating(Rating rating) {
-        this.rating = rating;
+    public User ratings(Set<Rating> ratings) {
+        this.ratings = ratings;
         return this;
-    }
-
-    public void setRating(Rating rating) {
-        this.rating = rating;
     }
     
     public Long getId() {

@@ -15,7 +15,7 @@ public interface TopicMapper extends EntityMapper<TopicDTO, Topic> {
     TopicDTO toDto(Topic topic);
 
     @Mapping(target = "conversation", ignore = true)
-    @Mapping(target = "rating", ignore = true)
+    @Mapping(target = "ratings", ignore = true)
     @Mapping(source = "userId", target = "user")
     Topic toEntity(TopicDTO topicDTO);
 

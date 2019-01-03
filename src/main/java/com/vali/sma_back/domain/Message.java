@@ -29,7 +29,8 @@ public class Message implements Serializable {
     @Column(name = "timestamp_millis", nullable = false)
     private Long timestampMillis;
 
-    @OneToOne    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("topics")
     private User user;
 
     @ManyToOne
