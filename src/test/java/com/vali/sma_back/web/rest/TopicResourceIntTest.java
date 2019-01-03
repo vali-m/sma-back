@@ -40,11 +40,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SmaBackApp.class)
 public class TopicResourceIntTest {
 
-    private static final Long DEFAULT_COORD_X = 1L;
-    private static final Long UPDATED_COORD_X = 2L;
+    private static final @javax.validation.constraints.Min(-90) @javax.validation.constraints.Max(90) Double DEFAULT_COORD_X = 1D;
+    private static final @javax.validation.constraints.Min(-90) @javax.validation.constraints.Max(90) Double UPDATED_COORD_X = 2D;
 
-    private static final Long DEFAULT_COORD_Y = 1L;
-    private static final Long UPDATED_COORD_Y = 2L;
+    private static final Double DEFAULT_COORD_Y = 1D;
+    private static final Double UPDATED_COORD_Y = 2D;
 
     private static final Boolean DEFAULT_ARCHIVED = false;
     private static final Boolean UPDATED_ARCHIVED = true;
@@ -192,7 +192,7 @@ public class TopicResourceIntTest {
     @Transactional
     public void getNonExistingTopic() throws Exception {
         // Get the topic
-        restTopicMockMvc.perform(get("/api/topics/{id}", Long.MAX_VALUE))
+        restTopicMockMvc.perform(get("/api/topics/{id}", Double.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 

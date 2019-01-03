@@ -10,9 +10,9 @@ public class TopicDTO implements Serializable {
 
     private Long id;
 
-    private Long coordX;
+    private @javax.validation.constraints.Min(-90) @javax.validation.constraints.Max(90) Double coordX;
 
-    private Long coordY;
+    private Double coordY;
 
     private Boolean archived;
 
@@ -28,19 +28,19 @@ public class TopicDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getCoordX() {
+    public @javax.validation.constraints.Min(-90) @javax.validation.constraints.Max(90) Double getCoordX() {
         return coordX;
     }
 
-    public void setCoordX(Long coordX) {
+    public void setCoordX(@javax.validation.constraints.Min(-90) @javax.validation.constraints.Max(90) Double coordX) {
         this.coordX = coordX;
     }
 
-    public Long getCoordY() {
+    public Double getCoordY() {
         return coordY;
     }
 
-    public void setCoordY(Long coordY) {
+    public void setCoordY(Double coordY) {
         this.coordY = coordY;
     }
 

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
@@ -22,11 +24,14 @@ public class Topic implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Min(-90) @Max(90)
     @Column(name = "coord_x")
-    private Long coordX;
+    private Double coordX;
 
+    @Min(-180)
+    @Max(180)
     @Column(name = "coord_y")
-    private Long coordY;
+    private Double coordY;
 
     @Column(name = "archived")
     private Boolean archived;
@@ -55,29 +60,29 @@ public class Topic implements Serializable {
         this.id = id;
     }
 
-    public Long getCoordX() {
+    public Double getCoordX() {
         return coordX;
     }
 
-    public Topic coordX(Long coordX) {
+    public Topic coordX(Double coordX) {
         this.coordX = coordX;
         return this;
     }
 
-    public void setCoordX(Long coordX) {
+    public void setCoordX(Double coordX) {
         this.coordX = coordX;
     }
 
-    public Long getCoordY() {
+    public Double getCoordY() {
         return coordY;
     }
 
-    public Topic coordY(Long coordY) {
+    public Topic coordY(Double coordY) {
         this.coordY = coordY;
         return this;
     }
 
-    public void setCoordY(Long coordY) {
+    public void setCoordY(Double coordY) {
         this.coordY = coordY;
     }
 
