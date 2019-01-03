@@ -28,15 +28,15 @@ entity Message {
 
 relationship OneToMany {
 	User1 to Topic,
+	User1 to Message,
+	User1 to Rating,
+	User1 to Conversation{respondingUser}
     Conversation to Message,
+	Topic to Rating
 }
 
 relationship OneToOne {
-	Conversation to Topic,
-    Conversation{respondingUser} to User1,
-    Message to User1,
-    Rating to User1,
-    Rating to Topic 
+	Conversation to Topic
 }
 
 skipClient *
