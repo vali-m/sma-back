@@ -61,12 +61,12 @@ public class TopicService {
     }
 
 
-
     /**
-     *  get all the topics where Conversation is null.
-     *  @return the list of entities
+     * get all the topics where Conversation is null.
+     *
+     * @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<TopicDTO> findAllWhereConversationIsNull() {
         log.debug("Request to get all topics where Conversation is null");
         return StreamSupport
@@ -78,10 +78,11 @@ public class TopicService {
 
 
     /**
-     *  get all the topics where Rating is null.
-     *  @return the list of entities
+     * get all the topics where Rating is null.
+     *
+     * @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<TopicDTO> findAllWhereRatingIsNull() {
         log.debug("Request to get all topics where Rating is null");
         return StreamSupport
@@ -112,5 +113,15 @@ public class TopicService {
     public void delete(Long id) {
         log.debug("Request to delete Topic : {}", id);
         topicRepository.deleteById(id);
+    }
+
+    public List<TopicDTO> getNearbyTopics(Double coordX, Double coordY, Double distance) {
+        log.debug("Request to get topics within {}km to ({},{})", distance, coordX, coordY);
+        Double radX = coordX * 0.0174533;
+        Double radY = coordY * 0.0174533;
+        return topicRepository.findLocal(radX, radY, distance)
+            .stream()
+            .map(topicMapper::toDto)
+            .collect(Collectors.toList());
     }
 }

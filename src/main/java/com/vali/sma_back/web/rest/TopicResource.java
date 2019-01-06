@@ -11,9 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -26,6 +29,8 @@ public class TopicResource {
     private final Logger log = LoggerFactory.getLogger(TopicResource.class);
 
     private static final String ENTITY_NAME = "topic";
+
+    private static final Double DEFAULT_DISTANCE = 100D;
 
     private final TopicService topicService;
 
@@ -94,6 +99,25 @@ public class TopicResource {
         }
         log.debug("REST request to get all Topics");
         return topicService.findAll();
+    }
+
+    /**
+     * GET  /topics/local : get all the topics.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of topics in body
+     */
+    @PostMapping("/topics/nearby")
+    @Timed
+    public ResponseEntity<List<TopicDTO>> getNearbyTopics(@RequestBody TopicDTO topicDTO,
+                                          @PathVariable(name="distance", required = false) Double distance) {
+        distance = Objects.isNull(distance) ? DEFAULT_DISTANCE : distance;
+        Double coordX = topicDTO.getCoordX();
+        Double coordY = topicDTO.getCoordY();
+        if(coordX == null || coordY == null){
+            throw new BadRequestAlertException("Request needs to contain both coordX and coordY!", ENTITY_NAME, "coordsrequired");
+        }
+        List<TopicDTO> topics = topicService.getNearbyTopics(coordX, coordY, distance);
+        return ResponseEntity.ok(topics);
     }
 
     /**
