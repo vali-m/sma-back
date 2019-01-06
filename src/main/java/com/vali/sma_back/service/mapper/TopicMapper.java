@@ -8,15 +8,17 @@ import org.mapstruct.Mapping;
 /**
  * Mapper for the entity Topic and its DTO TopicDTO.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, MessageMapper.class})
 public interface TopicMapper extends EntityMapper<TopicDTO, Topic> {
 
     @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "message.id", target = "messageId")
     TopicDTO toDto(Topic topic);
 
     @Mapping(target = "conversation", ignore = true)
     @Mapping(target = "ratings", ignore = true)
     @Mapping(source = "userId", target = "user")
+    @Mapping(source = "messageId", target = "message")
     Topic toEntity(TopicDTO topicDTO);
 
     default Topic fromId(Long id) {

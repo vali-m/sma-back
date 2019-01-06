@@ -92,4 +92,5 @@ public class MessageDTO implements Serializable {
             ", conversation=" + getConversationId() +
             "}";
     }
+
 }

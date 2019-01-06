@@ -27,7 +27,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="user_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_message_user1_id" />
+                <constraints nullable="true"/>
             </column>
             <column name="conversation_id" type="bigint">
                 <constraints nullable="true" />

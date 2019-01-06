@@ -1,1 +1,4 @@
 id;text;timestamp_millis;user_id;conversation_id
+1;"Topic 1 text on 1st of january by admin";1546293600000;3;null
+2;"Topic 2 text on 6th of january by user";1546799682624;4;null
+3;"Topic 3 text on 10th of january by user";1547071200000;4;null

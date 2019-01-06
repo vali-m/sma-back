@@ -39,9 +39,13 @@ public class Topic implements Serializable {
     @Column(name = "score")
     private Integer score;
 
-    @OneToOne(mappedBy = "topic")
+    @OneToMany(mappedBy = "topic")
     @JsonIgnore
-    private Conversation conversation;
+    private Set<Conversation> conversation;
+
+    @OneToOne
+    @JoinColumn(name="message_id")
+    private Message message;
 
     @OneToMany(mappedBy = "topic")
     @JsonIgnore
@@ -112,16 +116,16 @@ public class Topic implements Serializable {
         this.score = score;
     }
 
-    public Conversation getConversation() {
+    public Set<Conversation> getConversation() {
         return conversation;
     }
 
-    public Topic conversation(Conversation conversation) {
+    public Topic conversation(Set<Conversation> conversation) {
         this.conversation = conversation;
         return this;
     }
 
-    public void setConversation(Conversation conversation) {
+    public void setConversation(Set<Conversation> conversation) {
         this.conversation = conversation;
     }
 
@@ -181,5 +185,13 @@ public class Topic implements Serializable {
             ", archived='" + isArchived() + "'" +
             ", score=" + getScore() +
             "}";
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
     }
 }

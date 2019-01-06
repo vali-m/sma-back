@@ -32,11 +32,12 @@ relationship OneToMany {
 	User1 to Rating,
 	User1 to Conversation{respondingUser}
     Conversation to Message,
-	Topic to Rating
+	Topic to Rating,
+	Topic to Conversation,
 }
 
 relationship OneToOne {
-	Conversation to Topic
+	Topic to Message,
 }
 
 skipClient *

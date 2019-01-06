@@ -23,9 +23,9 @@
                 <constraints nullable="false" />
             </column>
             <column name="user_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_rating_user1_id" />
+                <constraints nullable="true" />
             </column>            <column name="topic_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_rating_topic_id" />
+                <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

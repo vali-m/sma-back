@@ -1,4 +1,5 @@
-id;coord_x;coord_y;archived;score;user_id
-1;45.763756;21.255124;0;0;3
-2;45.738132;21.210137;0;0;4
-3;45.760293;21.220871;1;0;4
+id;coord_x;coord_y;archived;score;user_id;message_id
+1;45.763756;21.255124;0;0;3;1
+2;45.738132;21.210137;0;0;4;2
+3;45.760293;21.220871;1;0;4;3
+4;null;null;null;null;null;null

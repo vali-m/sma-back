@@ -19,6 +19,7 @@ public class TopicDTO implements Serializable {
     private Integer score;
 
     private Long userId;
+    private Long messageId;
 
     public Long getId() {
         return id;
@@ -99,5 +100,13 @@ public class TopicDTO implements Serializable {
             ", score=" + getScore() +
             ", user=" + getUserId() +
             "}";
+    }
+
+    public Long getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(Long messageId) {
+        this.messageId = messageId;
     }
 }

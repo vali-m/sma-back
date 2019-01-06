@@ -103,6 +103,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @JsonIgnore
     private Set<Message> messages;
 
+    @OneToMany(mappedBy = "respondingUser")
+    @JsonIgnore
+    private Set<Conversation> conversations;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Set<Rating> ratings;
@@ -308,5 +312,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
             "}";
+    }
+
+    public Set<Conversation> getConversations() {
+        return conversations;
+    }
+
+    public void setConversations(Set<Conversation> conversations) {
+        this.conversations = conversations;
     }
 }
