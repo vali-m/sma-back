@@ -18,8 +18,13 @@ public class TopicDTO implements Serializable {
 
     private Integer score;
 
-    private Long userId;
-    private Long messageId;
+    private String city;
+
+    private String title;
+
+    private UserDTO user;
+
+    private MessageDTO message;
 
     public Long getId() {
         return id;
@@ -61,12 +66,36 @@ public class TopicDTO implements Serializable {
         this.score = score;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getCity() {
+        return city;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
+
+    public MessageDTO getMessage() {
+        return message;
+    }
+
+    public void setMessage(MessageDTO message) {
+        this.message = message;
     }
 
     @Override
@@ -98,15 +127,9 @@ public class TopicDTO implements Serializable {
             ", coordY=" + getCoordY() +
             ", archived='" + isArchived() + "'" +
             ", score=" + getScore() +
-            ", user=" + getUserId() +
+            ", user= " + getUser() +
+            ", message= " + getMessage() +
             "}";
     }
 
-    public Long getMessageId() {
-        return messageId;
-    }
-
-    public void setMessageId(Long messageId) {
-        this.messageId = messageId;
-    }
 }

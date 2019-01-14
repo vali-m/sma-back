@@ -109,14 +109,31 @@ public class TopicResource {
     @PostMapping("/topics/nearby")
     @Timed
     public ResponseEntity<List<TopicDTO>> getNearbyTopics(@RequestBody TopicDTO topicDTO,
-                                          @PathVariable(name="distance", required = false) Double distance) {
+                                          @RequestParam(name="distance", required = false) Double distance) {
         distance = Objects.isNull(distance) ? DEFAULT_DISTANCE : distance;
         Double coordX = topicDTO.getCoordX();
         Double coordY = topicDTO.getCoordY();
+        log.debug("REST Request to get topics in around ({},{}) with distance {}!", coordX, coordY, distance);
         if(coordX == null || coordY == null){
             throw new BadRequestAlertException("Request needs to contain both coordX and coordY!", ENTITY_NAME, "coordsrequired");
         }
         List<TopicDTO> topics = topicService.getNearbyTopics(coordX, coordY, distance);
+        return ResponseEntity.ok(topics);
+    }
+
+    /**
+     * GET  /topics/local?city=... : get all the topics.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of topics in body
+     */
+    @GetMapping("/topics/nearby")
+    @Timed
+    public ResponseEntity<List<TopicDTO>> getNearbyTopics(@RequestParam(name="city", required = true) String city) {
+        log.debug("REST Request to get topics in city {}!", city);
+        List<TopicDTO> topics = topicService.getNearbyTopics(city);
+        if(topics.isEmpty()){
+            return ResponseUtil.wrapOrNotFound(Optional.empty());
+        }
         return ResponseEntity.ok(topics);
     }
 

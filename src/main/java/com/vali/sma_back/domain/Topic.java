@@ -39,6 +39,12 @@ public class Topic implements Serializable {
     @Column(name = "score")
     private Integer score;
 
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "title")
+    private String title;
+
     @OneToMany(mappedBy = "topic")
     @JsonIgnore
     private Set<Conversation> conversation;
@@ -140,6 +146,22 @@ public class Topic implements Serializable {
     public Topic ratings(Set<Rating> ratings) {
         this.ratings = ratings;
         return this;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public User getUser() {

@@ -25,4 +25,6 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
                           @Param(value="coordY") Double coordY,
                           @Param(value="dist") Double dist);
 
+    List<Topic> findTopicByCity(String city);
+
 }

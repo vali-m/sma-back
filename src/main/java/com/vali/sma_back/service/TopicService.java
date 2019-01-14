@@ -124,4 +124,12 @@ public class TopicService {
             .map(topicMapper::toDto)
             .collect(Collectors.toList());
     }
+
+    public List<TopicDTO> getNearbyTopics(String city) {
+        log.debug("Request to get topics in city {}!", city);
+        return topicRepository.findTopicByCity(city)
+            .stream()
+            .map(topicMapper::toDto)
+            .collect(Collectors.toList());
+    }
 }
