@@ -22,6 +22,8 @@ public class TopicDTO implements Serializable {
 
     private String title;
 
+    private Integer myScore;
+
     private UserDTO user;
 
     private MessageDTO message;
@@ -82,6 +84,14 @@ public class TopicDTO implements Serializable {
         this.title = title;
     }
 
+    public Integer getMyScore() {
+        return myScore;
+    }
+
+    public void setMyScore(Integer myScore) {
+        this.myScore = myScore;
+    }
+
     public UserDTO getUser() {
         return user;
     }
@@ -127,6 +137,7 @@ public class TopicDTO implements Serializable {
             ", coordY=" + getCoordY() +
             ", archived='" + isArchived() + "'" +
             ", score=" + getScore() +
+            ", myScore=" + getMyScore() +
             ", user= " + getUser() +
             ", message= " + getMessage() +
             "}";

@@ -1,7 +1,9 @@
 package com.vali.sma_back.service;
 
 import com.vali.sma_back.domain.Topic;
+import com.vali.sma_back.repository.RatingRepository;
 import com.vali.sma_back.repository.TopicRepository;
+import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.TopicDTO;
 import com.vali.sma_back.service.mapper.TopicMapper;
 import org.slf4j.Logger;
@@ -26,10 +28,13 @@ public class TopicService {
 
     private final TopicRepository topicRepository;
 
+    private final RatingRepository ratingRepository;
+
     private final TopicMapper topicMapper;
 
-    public TopicService(TopicRepository topicRepository, TopicMapper topicMapper) {
+    public TopicService(TopicRepository topicRepository, RatingRepository ratingRepository, TopicMapper topicMapper) {
         this.topicRepository = topicRepository;
+        this.ratingRepository = ratingRepository;
         this.topicMapper = topicMapper;
     }
 
@@ -47,6 +52,15 @@ public class TopicService {
         return topicMapper.toDto(topic);
     }
 
+    public TopicDTO toRatedDto(Topic topic, String username){
+        TopicDTO topicDTO = topicMapper.toDto(topic);
+        Integer myScore = ratingRepository.
+            findByTopicIdAndUserId(topic.getId(), username)
+            .orElse(0);
+        topicDTO.setMyScore(myScore);
+        return topicDTO;
+    }
+
     /**
      * Get all the topics.
      *
@@ -55,8 +69,10 @@ public class TopicService {
     @Transactional(readOnly = true)
     public List<TopicDTO> findAll() {
         log.debug("Request to get all Topics");
+        String username = SecurityUtils.getCurrentUserLogin()
+            .orElseThrow(() -> new InternalError("No current user login found!"));
         return topicRepository.findAll().stream()
-            .map(topicMapper::toDto)
+            .map(t -> toRatedDto(t, username))
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
@@ -101,8 +117,10 @@ public class TopicService {
     @Transactional(readOnly = true)
     public Optional<TopicDTO> findOne(Long id) {
         log.debug("Request to get Topic : {}", id);
+        String username = SecurityUtils.getCurrentUserLogin()
+            .orElseThrow(() -> new InternalError("No current user login found!"));
         return topicRepository.findById(id)
-            .map(topicMapper::toDto);
+            .map(t -> toRatedDto(t, username));
     }
 
     /**
@@ -119,17 +137,21 @@ public class TopicService {
         log.debug("Request to get topics within {}km to ({},{})", distance, coordX, coordY);
         Double radX = coordX * 0.0174533;
         Double radY = coordY * 0.0174533;
+        String username = SecurityUtils.getCurrentUserLogin()
+            .orElseThrow(() -> new InternalError("No current user login found!"));
         return topicRepository.findLocal(radX, radY, distance)
             .stream()
-            .map(topicMapper::toDto)
+            .map(t -> toRatedDto(t, username))
             .collect(Collectors.toList());
     }
 
     public List<TopicDTO> getNearbyTopics(String city) {
         log.debug("Request to get topics in city {}!", city);
+        String username = SecurityUtils.getCurrentUserLogin()
+            .orElseThrow(() -> new InternalError("No current user login found!"));
         return topicRepository.findTopicByCity(city)
             .stream()
-            .map(topicMapper::toDto)
+            .map(t -> toRatedDto(t, username))
             .collect(Collectors.toList());
     }
 }
