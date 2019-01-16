@@ -20,11 +20,12 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
     @Query("select t \n" +
         "from Topic t \n" +
         "where acos(sin(:coordX)*sin(radians(t.coordX)) + \n" +
-        "   cos(:coordX)*cos(radians(t.coordX))*cos(radians(t.coordY)-:coordY))*6378.1 < :dist")
+        "   cos(:coordX)*cos(radians(t.coordX))*cos(radians(t.coordY)-:coordY))*6378.1 < :dist \n" +
+        "and t.archived = false")
     List<Topic> findLocal(@Param(value="coordX") Double coordX,
                           @Param(value="coordY") Double coordY,
                           @Param(value="dist") Double dist);
 
-    List<Topic> findTopicByCity(String city);
+    List<Topic> findTopicByCityAndArchivedFalse(String city);
 
 }

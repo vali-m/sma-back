@@ -1,9 +1,11 @@
 package com.vali.sma_back.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.ConversationService;
 import com.vali.sma_back.service.dto.ConversationDTO;
 import com.vali.sma_back.web.rest.errors.BadRequestAlertException;
+import com.vali.sma_back.web.rest.errors.InternalServerErrorException;
 import com.vali.sma_back.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -85,6 +87,20 @@ public class ConversationResource {
     public List<ConversationDTO> getAllConversations() {
         log.debug("REST request to get all Conversations");
         return conversationService.findAll();
+    }
+
+    /**
+     * GET  /conversations : get all the conversations.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of conversations in body
+     */
+    @GetMapping("/conversations/me")
+    @Timed
+    public List<ConversationDTO> getMyConversations() {
+        String username = SecurityUtils.getCurrentUserLogin()
+            .orElseThrow(() -> new InternalServerErrorException("Could not find username!"));
+        log.debug("REST request to get Conversations of user {}", username);
+        return conversationService.findMine(username);
     }
 
     /**

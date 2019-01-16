@@ -6,6 +6,7 @@ import com.vali.sma_back.repository.TopicRepository;
 import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.TopicDTO;
 import com.vali.sma_back.service.mapper.TopicMapper;
+import com.vali.sma_back.web.rest.errors.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -70,7 +71,7 @@ public class TopicService {
     public List<TopicDTO> findAll() {
         log.debug("Request to get all Topics");
         String username = SecurityUtils.getCurrentUserLogin()
-            .orElseThrow(() -> new InternalError("No current user login found!"));
+            .orElseThrow(() -> new InternalServerErrorException("No current user login found!"));
         return topicRepository.findAll().stream()
             .map(t -> toRatedDto(t, username))
             .collect(Collectors.toCollection(LinkedList::new));
@@ -118,7 +119,7 @@ public class TopicService {
     public Optional<TopicDTO> findOne(Long id) {
         log.debug("Request to get Topic : {}", id);
         String username = SecurityUtils.getCurrentUserLogin()
-            .orElseThrow(() -> new InternalError("No current user login found!"));
+            .orElseThrow(() -> new InternalServerErrorException("No current user login found!"));
         return topicRepository.findById(id)
             .map(t -> toRatedDto(t, username));
     }
@@ -133,23 +134,25 @@ public class TopicService {
         topicRepository.deleteById(id);
     }
 
+    @Transactional(readOnly = true)
     public List<TopicDTO> getNearbyTopics(Double coordX, Double coordY, Double distance) {
         log.debug("Request to get topics within {}km to ({},{})", distance, coordX, coordY);
         Double radX = coordX * 0.0174533;
         Double radY = coordY * 0.0174533;
         String username = SecurityUtils.getCurrentUserLogin()
-            .orElseThrow(() -> new InternalError("No current user login found!"));
+            .orElseThrow(() -> new InternalServerErrorException("No current user login found!"));
         return topicRepository.findLocal(radX, radY, distance)
             .stream()
             .map(t -> toRatedDto(t, username))
             .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public List<TopicDTO> getNearbyTopics(String city) {
         log.debug("Request to get topics in city {}!", city);
         String username = SecurityUtils.getCurrentUserLogin()
-            .orElseThrow(() -> new InternalError("No current user login found!"));
-        return topicRepository.findTopicByCity(city)
+            .orElseThrow(() -> new InternalServerErrorException("No current user login found!"));
+        return topicRepository.findTopicByCityAndArchivedFalse(city)
             .stream()
             .map(t -> toRatedDto(t, username))
             .collect(Collectors.toList());

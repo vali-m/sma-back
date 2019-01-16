@@ -2,8 +2,10 @@ package com.vali.sma_back.service;
 
 import com.vali.sma_back.domain.Conversation;
 import com.vali.sma_back.repository.ConversationRepository;
+import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.ConversationDTO;
 import com.vali.sma_back.service.mapper.ConversationMapper;
+import com.vali.sma_back.web.rest.errors.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -59,6 +61,15 @@ public class ConversationService {
             .collect(Collectors.toCollection(LinkedList::new));
     }
 
+    @Transactional(readOnly = true)
+    public List<ConversationDTO> findMine(String username){
+        log.debug("Request to find all Conversations of user {}", username);
+        return conversationRepository.findMine(username)
+            .stream()
+            .map(conversationMapper::toDto)
+            .collect(Collectors.toList());
+
+    }
 
     /**
      * Get one conversation by id.
