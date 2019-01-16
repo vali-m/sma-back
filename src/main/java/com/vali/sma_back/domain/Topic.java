@@ -2,6 +2,7 @@ package com.vali.sma_back.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -34,6 +35,7 @@ public class Topic implements Serializable {
     private Double coordY;
 
     @Column(name = "archived")
+    @ColumnDefault("false")
     private Boolean archived;
 
     @Column(name = "score")
@@ -57,7 +59,7 @@ public class Topic implements Serializable {
     @JsonIgnore
     private Set<Rating> ratings;
 
-    @ManyToOne
+    @ManyToOne(cascade = {})
     @JsonIgnoreProperties("topics")
     private User user;
 
@@ -168,7 +170,7 @@ public class Topic implements Serializable {
         return user;
     }
 
-    public Topic user1(User user1) {
+    public Topic user(User user1) {
         this.user = user1;
         return this;
     }

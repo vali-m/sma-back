@@ -2,6 +2,7 @@ package com.vali.sma_back.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the Conversation entity.
@@ -13,6 +14,8 @@ public class ConversationDTO implements Serializable {
     private Long topicId;
 
     private Long respondingUserId;
+
+    private Set<MessageDTO> messages;
 
     public Long getId() {
         return id;

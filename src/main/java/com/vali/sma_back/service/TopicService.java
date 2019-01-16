@@ -3,6 +3,7 @@ package com.vali.sma_back.service;
 import com.vali.sma_back.domain.Topic;
 import com.vali.sma_back.repository.RatingRepository;
 import com.vali.sma_back.repository.TopicRepository;
+import com.vali.sma_back.repository.UserRepository;
 import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.TopicDTO;
 import com.vali.sma_back.service.mapper.TopicMapper;
@@ -31,11 +32,14 @@ public class TopicService {
 
     private final RatingRepository ratingRepository;
 
+    private final UserRepository userRepository;
+
     private final TopicMapper topicMapper;
 
-    public TopicService(TopicRepository topicRepository, RatingRepository ratingRepository, TopicMapper topicMapper) {
+    public TopicService(TopicRepository topicRepository, RatingRepository ratingRepository, UserRepository userRepository, TopicMapper topicMapper) {
         this.topicRepository = topicRepository;
         this.ratingRepository = ratingRepository;
+        this.userRepository = userRepository;
         this.topicMapper = topicMapper;
     }
 
@@ -46,11 +50,16 @@ public class TopicService {
      * @return the persisted entity
      */
     public TopicDTO save(TopicDTO topicDTO) {
-        log.debug("Request to save Topic : {}", topicDTO);
+        String username = SecurityUtils.getCurrentUserLogin()
+            .orElseThrow(() -> new InternalServerErrorException("Username not found!"));
+
+        log.debug("Request to save Topic by {}: {} ", username, topicDTO);
 
         Topic topic = topicMapper.toEntity(topicDTO);
+        topic.setUser(userRepository.findOneByLogin(username)
+            .orElseThrow(() -> new InternalServerErrorException("User not found!")));
         topic = topicRepository.save(topic);
-        return topicMapper.toDto(topic);
+        return this.toRatedDto(topic, username);
     }
 
     public TopicDTO toRatedDto(Topic topic, String username){
