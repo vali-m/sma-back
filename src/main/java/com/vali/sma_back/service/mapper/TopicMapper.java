@@ -11,7 +11,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {UserMapper.class, MessageMapper.class})
 public interface TopicMapper extends EntityMapper<TopicDTO, Topic> {
 
-    @Mapping(source = "user", target = "user")
+    @Mapping(source = "user", target = "postedBy")
     @Mapping(source = "message", target = "message")
     TopicDTO toDto(Topic topic);
 
