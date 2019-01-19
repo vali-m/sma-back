@@ -14,7 +14,6 @@ public class MessageDTO implements Serializable {
     @NotNull
     private String text;
 
-    @NotNull
     private Long timestampMillis;
 
     private Long userId;

@@ -64,6 +64,7 @@ public class Topic implements Serializable {
     @NotNull
     @ManyToOne(cascade = {})
     @JsonIgnoreProperties("topics")
+    @JoinColumn(name="user_id")
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

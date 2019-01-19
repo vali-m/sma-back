@@ -127,4 +127,10 @@ public class Message implements Serializable {
             ", timestampMillis=" + getTimestampMillis() +
             "}";
     }
+
+
+    @PrePersist
+    protected void onCreate() {
+        setTimestampMillis(System.currentTimeMillis());
+    }
 }
