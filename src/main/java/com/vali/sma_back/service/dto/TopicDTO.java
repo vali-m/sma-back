@@ -25,7 +25,6 @@ public class TopicDTO implements Serializable {
 
     private Integer myScore;
 
-    @NotNull
     private UserDTO user;
 
     private MessageDTO message;

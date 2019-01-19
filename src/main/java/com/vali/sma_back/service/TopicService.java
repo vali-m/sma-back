@@ -7,6 +7,7 @@ import com.vali.sma_back.repository.UserRepository;
 import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.TopicDTO;
 import com.vali.sma_back.service.mapper.TopicMapper;
+import com.vali.sma_back.web.rest.errors.BadRequestAlertException;
 import com.vali.sma_back.web.rest.errors.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,9 +53,9 @@ public class TopicService {
     public TopicDTO save(TopicDTO topicDTO) {
         String username = SecurityUtils.getCurrentUserLogin()
             .orElseThrow(() -> new InternalServerErrorException("Username not found!"));
-
-        log.debug("Request to save Topic by {}: {} ", username, topicDTO);
-
+        if(topicDTO.getCity() == null){
+            throw new BadRequestAlertException("TopicDTO cannot have null city!", "Topic", "err.isnull.topic.city");
+        }
         Topic topic = topicMapper.toEntity(topicDTO);
         topic.setUser(userRepository.findOneByLogin(username)
             .orElseThrow(() -> new InternalServerErrorException("User not found!")));

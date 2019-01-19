@@ -3,10 +3,12 @@ package com.vali.sma_back.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
@@ -51,7 +53,7 @@ public class Topic implements Serializable {
     @JsonIgnore
     private Set<Conversation> conversation;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name="message_id")
     private Message message;
 
@@ -59,6 +61,7 @@ public class Topic implements Serializable {
     @JsonIgnore
     private Set<Rating> ratings;
 
+    @NotNull
     @ManyToOne(cascade = {})
     @JsonIgnoreProperties("topics")
     private User user;
