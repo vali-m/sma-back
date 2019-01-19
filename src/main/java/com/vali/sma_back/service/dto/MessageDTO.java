@@ -88,7 +88,7 @@ public class MessageDTO implements Serializable {
             "id=" + getId() +
             ", text='" + getText() + "'" +
             ", timestampMillis=" + getTimestampMillis() +
-            ", user=" + getUserId() +
+            ", userId=" + getUserId() +
             ", conversation=" + getConversationId() +
             "}";
     }

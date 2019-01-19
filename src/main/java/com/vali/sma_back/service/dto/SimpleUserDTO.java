@@ -16,10 +16,9 @@ public class SimpleUserDTO implements Serializable {
     private Long karma;
 
     public SimpleUserDTO(User user) {
-        SimpleUserDTO simpleUserDTO = new SimpleUserDTO();
-        simpleUserDTO.setId(user.getId());
-        simpleUserDTO.setKarma(user.getKarma());
-        simpleUserDTO.setUsername(user.getLogin());
+        setId(user.getId());
+        setKarma(user.getKarma());
+        setUsername(user.getLogin());
     }
 
     public SimpleUserDTO() {

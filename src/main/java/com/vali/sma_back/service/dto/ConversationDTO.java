@@ -76,6 +76,7 @@ public class ConversationDTO implements Serializable {
             "id=" + getId() +
             ", topic=" + getTopicId() +
             ", respondingUser=" + getRespondingUserId() +
+            ", messages=" + getMessages() +
             "}";
     }
 }
