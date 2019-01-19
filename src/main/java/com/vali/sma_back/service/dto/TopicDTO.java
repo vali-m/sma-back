@@ -25,7 +25,7 @@ public class TopicDTO implements Serializable {
 
     private Integer myScore;
 
-    private UserDTO user;
+    private SimpleUserDTO user;
 
     private MessageDTO message;
 
@@ -93,11 +93,11 @@ public class TopicDTO implements Serializable {
         this.myScore = myScore;
     }
 
-    public UserDTO getUser() {
+    public SimpleUserDTO getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(SimpleUserDTO user) {
         this.user = user;
     }
 

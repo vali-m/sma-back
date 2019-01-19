@@ -2,6 +2,7 @@ package com.vali.sma_back.service.mapper;
 
 import com.vali.sma_back.domain.Authority;
 import com.vali.sma_back.domain.User;
+import com.vali.sma_back.service.dto.SimpleUserDTO;
 import com.vali.sma_back.service.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,10 @@ public class UserMapper {
 
     public UserDTO userToUserDTO(User user) {
         return new UserDTO(user);
+    }
+
+    public SimpleUserDTO toSimpleDTO(User user) {
+        return new SimpleUserDTO(user);
     }
 
     public List<User> userDTOsToUsers(List<UserDTO> userDTOs) {
