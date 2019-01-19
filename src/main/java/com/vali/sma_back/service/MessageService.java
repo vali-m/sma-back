@@ -1,9 +1,13 @@
 package com.vali.sma_back.service;
 
 import com.vali.sma_back.domain.Message;
+import com.vali.sma_back.domain.User;
 import com.vali.sma_back.repository.MessageRepository;
+import com.vali.sma_back.repository.UserRepository;
+import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.MessageDTO;
 import com.vali.sma_back.service.mapper.MessageMapper;
+import com.vali.sma_back.web.rest.errors.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,9 +31,12 @@ public class MessageService {
 
     private final MessageMapper messageMapper;
 
-    public MessageService(MessageRepository messageRepository, MessageMapper messageMapper) {
+    private final UserRepository userRepository;
+
+    public MessageService(MessageRepository messageRepository, MessageMapper messageMapper, UserRepository userRepository) {
         this.messageRepository = messageRepository;
         this.messageMapper = messageMapper;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -40,6 +47,13 @@ public class MessageService {
      */
     public MessageDTO save(MessageDTO messageDTO) {
         log.debug("Request to save Message : {}", messageDTO);
+        Long userId = SecurityUtils.getCurrentUserLogin()
+            .map(userRepository::findOneByLogin)
+            .orElseThrow(() -> new InternalServerErrorException("Could not find user with this name"))
+            .map(User::getId)
+            .orElseThrow(() -> new InternalServerErrorException("Could not find user Username"));
+
+        messageDTO.setUserId(userId);
 
         Message message = messageMapper.toEntity(messageDTO);
         message = messageRepository.save(message);

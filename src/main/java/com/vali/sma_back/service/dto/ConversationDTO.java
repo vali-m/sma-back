@@ -41,6 +41,14 @@ public class ConversationDTO implements Serializable {
         this.respondingUserId = user1Id;
     }
 
+    public Set<MessageDTO> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<MessageDTO> messages) {
+        this.messages = messages;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
