@@ -92,6 +92,7 @@ public class ConversationService {
         log.debug("Request to find all Conversations of user {}", username);
         return conversationRepository.findMine(username)
             .stream()
+            .filter(conv -> conv.getMessages() != null && !conv.getMessages().isEmpty())
             .map(conversationMapper::toDto)
             .collect(Collectors.toList());
 
