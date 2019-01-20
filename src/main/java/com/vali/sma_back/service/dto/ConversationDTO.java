@@ -1,5 +1,6 @@
 package com.vali.sma_back.service.dto;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
@@ -11,6 +12,7 @@ public class ConversationDTO implements Serializable {
 
     private Long id;
 
+    @NotNull
     private Long topicId;
 
     private Long respondingUserId;

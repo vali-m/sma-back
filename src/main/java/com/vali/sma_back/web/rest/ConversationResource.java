@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -44,7 +45,7 @@ public class ConversationResource {
      */
     @PostMapping("/conversations")
     @Timed
-    public ResponseEntity<ConversationDTO> createConversation(@RequestBody ConversationDTO conversationDTO) throws URISyntaxException {
+    public ResponseEntity<ConversationDTO> createConversation(@Valid @RequestBody ConversationDTO conversationDTO) throws URISyntaxException {
         log.debug("REST request to save Conversation : {}", conversationDTO);
         if (conversationDTO.getId() != null) {
             throw new BadRequestAlertException("A new conversation cannot already have an ID", ENTITY_NAME, "idexists");
@@ -66,7 +67,7 @@ public class ConversationResource {
      */
     @PutMapping("/conversations")
     @Timed
-    public ResponseEntity<ConversationDTO> updateConversation(@RequestBody ConversationDTO conversationDTO) throws URISyntaxException {
+    public ResponseEntity<ConversationDTO> updateConversation(@Valid @RequestBody ConversationDTO conversationDTO) throws URISyntaxException {
         log.debug("REST request to update Conversation : {}", conversationDTO);
         if (conversationDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

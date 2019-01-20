@@ -18,7 +18,6 @@ public class MessageDTO implements Serializable {
 
     private Long userId;
 
-    @NotNull
     private Long conversationId;
 
     public Long getId() {

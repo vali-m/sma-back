@@ -43,6 +43,7 @@ public class Topic implements Serializable {
     @Column(name = "score")
     private Integer score;
 
+    @NotNull
     @Column(name = "city")
     private String city;
 
@@ -53,6 +54,7 @@ public class Topic implements Serializable {
     @JsonIgnore
     private Set<Conversation> conversation;
 
+    @NotNull
     @OneToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name="message_id")
     private Message message;

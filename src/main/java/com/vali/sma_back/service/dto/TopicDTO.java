@@ -1,5 +1,6 @@
 package com.vali.sma_back.service.dto;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ public class TopicDTO implements Serializable {
 
     private Integer score;
 
+    @NotNull
     private String city;
 
     private String title;
@@ -26,6 +28,7 @@ public class TopicDTO implements Serializable {
 
     private SimpleUserDTO postedBy;
 
+    @NotNull
     private MessageDTO message;
 
     public Long getId() {

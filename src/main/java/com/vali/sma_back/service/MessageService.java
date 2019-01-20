@@ -46,6 +46,9 @@ public class MessageService {
      * @return the persisted entity
      */
     public MessageDTO save(MessageDTO messageDTO) {
+        if(messageDTO.getConversationId() == null){
+            throw new InternalServerErrorException("Posted messages require a conversationId!");
+        }
         log.debug("Request to save Message : {}", messageDTO);
         Long userId = SecurityUtils.getCurrentUserLogin()
             .map(userRepository::findOneByLogin)

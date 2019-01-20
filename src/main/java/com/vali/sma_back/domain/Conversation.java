@@ -3,6 +3,7 @@ package com.vali.sma_back.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -22,10 +23,12 @@ public class Conversation implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @NotNull
     @ManyToOne
     @JsonIgnoreProperties("conversation")
     private Topic topic;
 
+    @NotNull
     @ManyToOne
     @JsonIgnoreProperties("conversations")
     private User respondingUser;

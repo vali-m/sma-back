@@ -1,7 +1,9 @@
 package com.vali.sma_back.service;
 
 import com.vali.sma_back.domain.Conversation;
+import com.vali.sma_back.domain.User;
 import com.vali.sma_back.repository.ConversationRepository;
+import com.vali.sma_back.repository.UserRepository;
 import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.ConversationDTO;
 import com.vali.sma_back.service.mapper.ConversationMapper;
@@ -29,9 +31,12 @@ public class ConversationService {
 
     private final ConversationMapper conversationMapper;
 
-    public ConversationService(ConversationRepository conversationRepository, ConversationMapper conversationMapper) {
+    private final UserRepository userRepository;
+
+    public ConversationService(ConversationRepository conversationRepository, ConversationMapper conversationMapper, UserRepository userRepository) {
         this.conversationRepository = conversationRepository;
         this.conversationMapper = conversationMapper;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -41,8 +46,15 @@ public class ConversationService {
      * @return the persisted entity
      */
     public ConversationDTO save(ConversationDTO conversationDTO) {
-        log.debug("Request to save Conversation : {}", conversationDTO);
+        Optional<String> userLogin = SecurityUtils.getCurrentUserLogin();
+        log.debug("Request from {} to save Conversation : {}", userLogin, conversationDTO);
+        Long userId = userLogin
+            .map(userRepository::findOneByLogin)
+            .orElseThrow(() -> new InternalServerErrorException("Could not find User"))
+            .map(User::getId)
+            .orElseThrow(() -> new InternalServerErrorException("Could not find User"));
 
+        conversationDTO.setRespondingUserId(userId);
         Conversation conversation = conversationMapper.toEntity(conversationDTO);
         conversation = conversationRepository.save(conversation);
         return conversationMapper.toDto(conversation);
