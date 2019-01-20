@@ -1,15 +1,15 @@
 id;text;timestamp_millis;user_id;conversation_id
-1;"Topic 1 text on 1st of january by admin";1546293600000;3;null
-2;"Topic 2 text on 6th of january by user";1546799682624;4;null
-3;"Topic 3 text on 10th of january by user";1547071200000;4;null
-4;"Padurice - request 4";1547071200000;5;null
-5;"McDonalds - request 5";1547071200000;5;null
-6;"UPT Electro - request 6";1547071200000;6;null
-7;"Fantana cu pesti - request 7";1547071200000;6;null
-8;"Piata Unirii - request 8";1547071200000;5;null
-9;"Catedrala - request 9";1547071200000;6;null
-10;"Casino - request 10";1547071200000;5;null
-11;"Observator - request 11 - timestamp 12344";12344;6;null
-12;"Hello, i am admin. Wanna meet?";1547071212345;3;2
-13;"Hey admin, I am user. Sorry, busy.";1547071200000;4;2
+1;"Going out. Who wants to come with?";1546293600000;3;null
+2;"Need to buy some clothes and maybe go to the food court. Anyone want to come with? :)";1546799682624;4;null
+3;"Who wants to partaay!?!?";1547071200000;4;null
+4;"Just taking a leisurely stroll through the park";1547071200000;5;null
+5;"Running is one of the best (not to mention cheapest) ways of staying in shape. Who's up for a light jog?";1547071200000;5;null
+6;"Tough exam at Computer Security... Anyone want to share the pain with me and come to the library to learn?";1547071200000;6;null
+7;"Me and a couple of buddies are going for laser tag tonight. We need another person to have even teams.";1547071200000;6;null
+8;"Free guided tour through Timisoara held by the museum of art";1547071200000;5;null
+9;"Title says it all.";1547071200000;6;null
+10;"They have Blackjack, Roulette, Poker and Slot Machines. Anyone wanna play with me";1547071200000;5;null
+11;"Hello everyone, I am holding a party at my place. Everyone is invited. BYOB!";12344;6;null
+12;"Hey, I also have that Computer Security exam, what time do you want to meet?";1547071212345;3;2
+13;"Oh, hello. I am leaving in about half an hour.";1547071400000;4;2
 15;"Hey Admin, pick me!";12344;6;4

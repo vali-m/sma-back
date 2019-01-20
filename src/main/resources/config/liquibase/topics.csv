@@ -1,12 +1,12 @@
 id;coord_x;coord_y;archived;score;city;user_id;message_id;title
-1;45.763756;21.255124;0;0;Timisoara;3;1;Title1
-2;45.738132;21.210137;0;0;Timisoara;4;2;Title2
-3;45.760293;21.220871;1;0;Timisoara;4;3;Title3
-5;45.731527;21.240686;false;1;Timisoara;5;4;Padurice
-6;45.738999;21.240389;false;1;Timisoara;5;5;McDonalds
-7;45.747757;21.225703;false;1;Timisoara;6;6;"UPT Electro"
-8;45.752780;21.225349;false;1;Timisoara;6;7;"Fantana cu pesti"
-9;45.757929;21.229029;false;1;Timisoara;6;8;"Piata Unirii"
-10;45.751305;21.224457;false;1;Timisoara;6;9;Catedrala
-11;46.768994;23.577911;false;1;Cluj-Napoca;5;10;Casino
-12;46.755706;23.593950;false;1;Cluj-Napoca;6;11;Observator
+1;45.763756;21.255124;0;0;Timișoara;3;1;"Who wants to go out?"
+2;45.738132;21.210137;0;0;Timișoara;4;2;"Anyone want to come to the mall?"
+3;45.760293;21.220871;1;0;Timișoara;4;3;"Dubstep Party at Molly Malone's"
+5;45.731527;21.240686;false;1;Timișoara;5;4;"Just a walk in the park"
+6;45.738999;21.240389;false;1;Timișoara;5;5;"Let's run around the stadium!"
+7;45.747757;21.225703;false;1;Timișoara;6;6;"Study session at UPT library!"
+8;45.752780;21.225349;false;1;Timișoara;6;7;"Who's up for laser tag?"
+9;45.757929;21.229029;false;1;Timișoara;6;8;"Guided city tour Timișoara"
+10;45.751305;21.224457;false;1;Timișoara;6;9;"Eating ice cream in the center"
+11;46.768994;23.577911;false;1;Cluj-Napoca;5;10;"Anyone want to hit the Casino"
+12;46.755706;23.593950;false;1;Cluj-Napoca;6;11;"Party at my place!"
