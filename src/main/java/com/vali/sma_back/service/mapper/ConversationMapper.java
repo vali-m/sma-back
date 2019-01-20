@@ -18,7 +18,7 @@ public interface ConversationMapper extends EntityMapper<ConversationDTO, Conver
 
     @Mapping(source = "topicId", target = "topic")
     @Mapping(source = "respondingUserId", target = "respondingUser")
-    @Mapping(target = "messages", ignore = true)
+    @Mapping(source = "messages", target = "messages")
     Conversation toEntity(ConversationDTO conversationDTO);
 
     default Conversation fromId(Long id) {

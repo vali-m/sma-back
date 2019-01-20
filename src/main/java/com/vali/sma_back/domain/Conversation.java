@@ -33,7 +33,7 @@ public class Conversation implements Serializable {
     @JsonIgnoreProperties("conversations")
     private User respondingUser;
 
-    @OneToMany(mappedBy = "conversation")
+    @OneToMany(cascade = {}, mappedBy = "conversation")
     private Set<Message> messages = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

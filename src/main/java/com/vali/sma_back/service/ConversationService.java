@@ -6,6 +6,7 @@ import com.vali.sma_back.repository.ConversationRepository;
 import com.vali.sma_back.repository.UserRepository;
 import com.vali.sma_back.security.SecurityUtils;
 import com.vali.sma_back.service.dto.ConversationDTO;
+import com.vali.sma_back.service.dto.MessageDTO;
 import com.vali.sma_back.service.mapper.ConversationMapper;
 import com.vali.sma_back.web.rest.errors.InternalServerErrorException;
 import org.slf4j.Logger;
@@ -13,9 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -33,10 +32,13 @@ public class ConversationService {
 
     private final UserRepository userRepository;
 
-    public ConversationService(ConversationRepository conversationRepository, ConversationMapper conversationMapper, UserRepository userRepository) {
+    private final MessageService messageService;
+
+    public ConversationService(ConversationRepository conversationRepository, ConversationMapper conversationMapper, UserRepository userRepository, MessageService messageService) {
         this.conversationRepository = conversationRepository;
         this.conversationMapper = conversationMapper;
         this.userRepository = userRepository;
+        this.messageService = messageService;
     }
 
     /**
@@ -55,9 +57,21 @@ public class ConversationService {
             .orElseThrow(() -> new InternalServerErrorException("Could not find User"));
 
         conversationDTO.setRespondingUserId(userId);
-        Conversation conversation = conversationMapper.toEntity(conversationDTO);
+        Set<MessageDTO> messages = conversationDTO.getMessages();
+        MessageDTO firstMessage = null;
+        if(messages != null && !messages.isEmpty()) {
+            firstMessage = messages.iterator().next();
+        }
+        Conversation conversation = conversationMapper.toEntity(conversationDTO).messages(new HashSet<>());
         conversation = conversationRepository.save(conversation);
-        return conversationMapper.toDto(conversation);
+        if(firstMessage != null){
+//            conversationDTO.setMessages(new HashSet<MessageDTO>(Arrays.asList(firstMessage)));
+            firstMessage.setConversationId(conversation.getId());
+            firstMessage = messageService.save(firstMessage);
+        }
+        ConversationDTO res = conversationMapper.toDto(conversation);
+        res.setMessages(new HashSet<MessageDTO>(Arrays.asList(firstMessage)));
+        return res;
     }
 
     /**
